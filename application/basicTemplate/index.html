@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>John & Emma · 15.06.2025</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Italiana&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+/* ═══════════════════════════════════════════════════
+   DESIGN TOKENS  ·  Editorial Botanical Luxury
+═══════════════════════════════════════════════════ */
+:root {
+  /* refined palette */
+  --paper:        #faf3e3;     /* warm cream paper */
+  --paper-deep:   #f0e4c9;     /* deeper paper accent */
+  --paper-edge:   #e8d9b8;     /* darkest paper for shadows/edges */
+  --beige:        #f5ead0;
+  --blush:        #e8a89a;     /* sophisticated peach */
+  --blush-soft:   #f5d4c4;
+  --blush-pale:   #fae8dd;
+  --terracotta:   #b86a4a;     /* deep accent */
+  --sky:          #9dc1d1;     /* dusty baby blue */
+  --sky-soft:     #cfe1ea;
+  --sky-pale:     #e6f0f4;
+  --sage:         #a8b89e;     /* botanical green accent */
+  --sage-soft:    #d5dccd;
+  --ink:          #3a2410;     /* deep ink for body text */
+  --ink-warm:     #6b3e1b;     /* caramel brown */
+  --ink-soft:     #8c5a37;     /* mid brown */
+  --ink-faded:    #b08862;     /* faded for labels */
+  --gold:         #c79a52;     /* foil gold accent */
+
+  /* type */
+  --serif:   'Fraunces', 'Cormorant Garamond', Georgia, serif;
+  --script:  'Italiana', 'Fraunces', serif;
+  --sans:    'DM Sans', system-ui, sans-serif;
+
+  /* sizing */
+  --max-w: 500px;
+  --r-card: 4px;
+  --r-soft: 14px;
+
+  /* shadows */
+  --sh-paper: 0 1px 0 rgba(255,255,255,.6) inset, 0 12px 32px -8px rgba(58,36,16,.18);
+  --sh-photo: 0 8px 28px -6px rgba(58,36,16,.28), 0 2px 0 rgba(255,255,255,.4) inset;
+}
+
+/* ═══════════════════════════════════════════════════
+   RESET
+═══════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  background: #d8c8a8;
+  font-family: var(--sans);
+  color: var(--ink);
+  min-height: 100dvh;
+  overflow-x: hidden;
+  font-weight: 400;
+  line-height: 1.6;
+}
+img { display: block; width: 100%; object-fit: cover; }
+button { cursor: pointer; font-family: inherit; border: none; outline: none; background: none; color: inherit; }
+a { color: inherit; text-decoration: none; }
+
+/* ═══════════════════════════════════════════════════
+   PAPER TEXTURE  ·  subtle SVG grain on every surface
+═══════════════════════════════════════════════════ */
+.grain { position: relative; }
+.grain::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.23 0 0 0 0 0.14 0 0 0 0 0.06 0 0 0 0.13 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: .55;
+  mix-blend-mode: multiply;
+}
+
+/* ═══════════════════════════════════════════════════
+   FRAME  ·  mobile-locked container even on desktop
+═══════════════════════════════════════════════════ */
+.frame {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  background: var(--paper);
+  min-height: 100dvh;
+  position: relative;
+  box-shadow: 0 0 100px -10px rgba(58,36,16,.35);
+}
+
+/* ═══════════════════════════════════════════════════
+   SVG BOTANICAL DECORATIONS  (reusable utility)
+═══════════════════════════════════════════════════ */
+.bot-line { display: block; margin: 0 auto; }
+.bot-corner { position: absolute; pointer-events: none; }
+
+/* ═══════════════════════════════════════════════════
+   SPLASH SCREEN
+═══════════════════════════════════════════════════ */
+#splash {
+  position: fixed; inset: 0; z-index: 999;
+  display: flex; align-items: center; justify-content: center;
+  background:
+    radial-gradient(ellipse at 30% 20%, var(--blush-pale) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 80%, var(--sky-pale) 0%, transparent 55%),
+    var(--paper);
+  transition: opacity .9s cubic-bezier(.7,0,.3,1), transform .9s cubic-bezier(.7,0,.3,1);
+  overflow: hidden;
+  padding: 24px;
+}
+#splash::after {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.2 0 0 0 0 0.12 0 0 0 0 0.05 0 0 0 0.18 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: .6; mix-blend-mode: multiply;
+}
+#splash.hide { opacity: 0; transform: scale(1.05); pointer-events: none; }
+
+.splash-card {
+  position: relative; z-index: 1;
+  width: 100%; max-width: 380px;
+  padding: 56px 32px 38px;
+  background: var(--paper);
+  border: 1px solid var(--paper-edge);
+  box-shadow:
+    0 0 0 1px var(--paper) inset,
+    0 0 0 6px var(--paper-deep),
+    0 0 0 7px var(--paper-edge),
+    0 30px 60px -15px rgba(58,36,16,.35);
+  text-align: center;
+  animation: floatGentle 5s ease-in-out infinite;
+}
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0) rotate(-.2deg); }
+  50%      { transform: translateY(-8px) rotate(.2deg); }
+}
+
+/* corner ornaments */
+.splash-card .bot-tl, .splash-card .bot-tr,
+.splash-card .bot-bl, .splash-card .bot-br {
+  position: absolute; width: 36px; height: 36px; opacity: .55;
+}
+.splash-card .bot-tl { top: 12px; left: 12px; }
+.splash-card .bot-tr { top: 12px; right: 12px; transform: scaleX(-1); }
+.splash-card .bot-bl { bottom: 12px; left: 12px; transform: scaleY(-1); }
+.splash-card .bot-br { bottom: 12px; right: 12px; transform: scale(-1,-1); }
+
+.splash-meta {
+  font-family: var(--sans);
+  font-size: 9px; font-weight: 500;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 28px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.splash-meta::before, .splash-meta::after {
+  content: ''; width: 22px; height: 1px; background: var(--ink-faded);
+}
+
+.splash-of {
+  font-family: var(--serif);
+  font-style: italic; font-weight: 300;
+  font-size: 14px; color: var(--ink-soft);
+  letter-spacing: .14em; margin-bottom: 4px;
+}
+
+.splash-names {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 52px; line-height: .95;
+  color: var(--ink);
+  font-variation-settings: 'opsz' 144;
+  margin: 4px 0;
+}
+.splash-names em { font-style: italic; font-weight: 400; }
+.splash-amp {
+  display: block;
+  font-family: var(--script);
+  font-size: 44px; line-height: 1;
+  color: var(--terracotta);
+  margin: -2px 0 -4px;
+  font-style: normal;
+}
+
+.splash-photo {
+  margin: 26px auto 24px;
+  width: 78%;
+  position: relative;
+  padding: 8px 8px 32px;
+  background: #fff;
+  box-shadow: 0 10px 30px -8px rgba(58,36,16,.35);
+  transform: rotate(-1.5deg);
+  transition: transform .4s ease;
+}
+.splash-photo::after {
+  content: '✦  Forever, Always  ✦';
+  position: absolute; bottom: 8px; left: 0; right: 0;
+  text-align: center;
+  font-family: var(--script);
+  font-size: 12px;
+  color: var(--ink-faded);
+  letter-spacing: .2em;
+}
+.splash-photo img {
+  width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: center 25%;
+  filter: sepia(.08) saturate(.92) contrast(1.02);
+}
+
+.splash-date-block {
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  margin-bottom: 28px;
+}
+.splash-date-block .date-num {
+  font-family: var(--serif);
+  font-size: 38px; font-weight: 300; line-height: 1;
+  color: var(--ink);
+}
+.splash-date-block .date-bar { width: 1px; height: 32px; background: var(--ink-faded); opacity: .4; }
+.splash-date-block .date-info {
+  display: flex; flex-direction: column; gap: 2px;
+  text-align: left;
+}
+.splash-date-block .date-info .m {
+  font-family: var(--sans); font-size: 9px; font-weight: 500;
+  letter-spacing: .3em; text-transform: uppercase; color: var(--ink-faded);
+}
+.splash-date-block .date-info .d {
+  font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--ink-soft);
+}
+
+.btn-open {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 11px; font-weight: 500;
+  letter-spacing: .35em; text-transform: uppercase;
+  padding: 16px 32px;
+  position: relative;
+  transition: all .35s ease;
+  border-radius: 1px;
+  min-height: 48px;
+}
+.btn-open::before, .btn-open::after {
+  content: ''; position: absolute; top: 50%; width: 5px; height: 5px;
+  background: var(--paper); transform: translateY(-50%) rotate(45deg);
+}
+.btn-open::before { left: -3px; }
+.btn-open::after  { right: -3px; }
+.btn-open:hover { background: var(--terracotta); transform: translateY(-2px); }
+
+/* ═══════════════════════════════════════════════════
+   INVITATION  ·  hidden until splash open
+═══════════════════════════════════════════════════ */
+#invitation { display: none; }
+#invitation.visible { display: block; }
+
+/* ═══════════════════════════════════════════════════
+   SHARED  ·  chapter markers, dividers, titles
+═══════════════════════════════════════════════════ */
+.chapter {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 8px; margin-bottom: 18px;
+}
+.chapter-roman {
+  font-family: var(--serif); font-style: italic;
+  font-size: 14px; color: var(--terracotta);
+  letter-spacing: .3em; font-weight: 400;
+}
+.chapter-tag {
+  font-family: var(--sans); font-size: 9px; font-weight: 500;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: var(--ink-faded);
+}
+.chapter-tag::before, .chapter-tag::after { content: '·'; margin: 0 8px; opacity: .6; }
+
+.section-title {
+  font-family: var(--serif);
+  font-style: italic; font-weight: 300;
+  font-size: 42px; line-height: 1.05;
+  color: var(--ink);
+  text-align: center;
+  font-variation-settings: 'opsz' 144;
+  margin-bottom: 12px;
+}
+
+.ornament-divider {
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; margin: 22px auto 36px;
+  width: 75%;
+}
+.ornament-divider .line { flex: 1; height: 1px; background: var(--ink-faded); opacity: .35; }
+.ornament-divider .ornament { color: var(--terracotta); opacity: .8; }
+
+section { position: relative; width: 100%; }
+.si { padding: 80px 28px; position: relative; }
+
+/* ═══════════════════════════════════════════════════
+   SECTION 1  ·  HERO
+═══════════════════════════════════════════════════ */
+#hero {
+  min-height: 100dvh;
+  display: flex; flex-direction: column;
+  background: var(--paper);
+  position: relative;
+}
+
+.hero-photo-wrap {
+  position: relative;
+  flex: 1; min-height: 64dvh;
+  overflow: hidden;
+}
+.hero-photo-wrap img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 22%;
+  filter: sepia(.06) saturate(.95) contrast(1.02);
+}
+.hero-photo-wrap::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    rgba(250,243,227,.05) 0%,
+    rgba(58,36,16,.25) 50%,
+    rgba(58,36,16,.7) 100%);
+}
+.hero-vertical-text {
+  position: absolute; right: 18px; top: 50%;
+  transform: translateY(-50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  font-family: var(--sans);
+  font-size: 9px; font-weight: 500;
+  letter-spacing: .55em; text-transform: uppercase;
+  color: rgba(255,255,255,.7);
+  z-index: 2;
+}
+.hero-frame-deco {
+  position: absolute; inset: 18px;
+  border: 1px solid rgba(255,255,255,.25);
+  pointer-events: none; z-index: 2;
+}
+.hero-frame-deco::before, .hero-frame-deco::after {
+  content: ''; position: absolute; width: 18px; height: 18px;
+  border: 1px solid rgba(255,255,255,.5);
+}
+.hero-frame-deco::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+.hero-frame-deco::after  { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+.hero-body {
+  background: var(--paper);
+  padding: 40px 28px 50px;
+  text-align: center;
+  position: relative;
+}
+.hero-body::before {
+  content: '';
+  position: absolute; top: -28px; left: 0; right: 0; height: 56px;
+  background: var(--paper);
+  clip-path: ellipse(58% 100% at 50% 100%);
+}
+.hero-of {
+  position: relative;
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: 18px; color: var(--ink-soft);
+  letter-spacing: .2em;
+  margin-bottom: 14px;
+}
+.hero-name {
+  position: relative;
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 64px; line-height: .95;
+  color: var(--ink);
+  font-variation-settings: 'opsz' 144;
+}
+.hero-name em { font-style: italic; font-weight: 400; }
+.hero-amp {
+  display: block;
+  font-family: var(--script);
+  font-size: 56px; line-height: 1;
+  color: var(--terracotta);
+  margin: -2px 0;
+}
+.hero-strip {
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; margin-top: 28px;
+}
+.hero-strip span {
+  font-family: var(--sans); font-size: 10px; font-weight: 500;
+  letter-spacing: .32em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.dot { width: 3px; height: 3px; border-radius: 50%; background: var(--terracotta); }
+
+.scroll-hint {
+  position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  z-index: 3;
+  animation: bounceDown 2.4s ease-in-out infinite;
+}
+@keyframes bounceDown {
+  0%,100% { transform: translateX(-50%) translateY(0); opacity: .6; }
+  50%       { transform: translateX(-50%) translateY(8px); opacity: 1; }
+}
+.scroll-hint span { font-family: var(--sans); font-size: 9px; letter-spacing: .35em; text-transform: uppercase; color: var(--ink-faded); }
+.scroll-arrow { width: 1px; height: 28px; background: var(--terracotta); position: relative; }
+.scroll-arrow::after {
+  content: ''; position: absolute; bottom: 0; left: -3px;
+  width: 7px; height: 7px;
+  border-right: 1px solid var(--terracotta);
+  border-bottom: 1px solid var(--terracotta);
+  transform: rotate(45deg);
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION 2  ·  QUOTES & GALLERY
+═══════════════════════════════════════════════════ */
+#quotes-gallery {
+  background:
+    radial-gradient(ellipse at top, var(--blush-pale) 0%, transparent 60%),
+    var(--paper);
+}
+
+.bible-quote {
+  text-align: center;
+  padding: 0 12px;
+  position: relative;
+}
+.bq-mark {
+  font-family: var(--serif);
+  font-size: 110px; line-height: .3;
+  color: var(--terracotta);
+  opacity: .35;
+  display: block;
+  margin-bottom: 30px;
+  font-variation-settings: 'opsz' 144;
+}
+.bible-quote blockquote {
+  font-family: var(--serif);
+  font-style: italic; font-weight: 300;
+  font-size: 22px; line-height: 1.5;
+  color: var(--ink);
+  font-variation-settings: 'opsz' 48;
+}
+.bible-quote blockquote .drop {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--terracotta);
+  font-size: 1.08em;
+}
+.bible-quote cite {
+  display: inline-block;
+  margin-top: 20px;
+  font-family: var(--sans);
+  font-size: 10px; font-weight: 500;
+  letter-spacing: .35em; text-transform: uppercase;
+  color: var(--ink-faded);
+  font-style: normal;
+  position: relative; padding: 0 18px;
+}
+.bible-quote cite::before, .bible-quote cite::after {
+  content: ''; position: absolute; top: 50%;
+  width: 10px; height: 1px; background: var(--ink-faded);
+}
+.bible-quote cite::before { left: 0; }
+.bible-quote cite::after  { right: 0; }
+
+/* botanical underline */
+.bot-underline { display: block; margin: 24px auto 0; opacity: .5; }
+
+/* polaroid collage */
+.collage {
+  margin: 56px 0 40px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  position: relative;
+}
+.poly {
+  background: #fff;
+  padding: 8px 8px 22px;
+  box-shadow: 0 8px 22px -6px rgba(58,36,16,.3);
+  transition: transform .4s ease;
+  position: relative;
+}
+.poly img {
+  width: 100%; aspect-ratio: 1; object-fit: cover;
+  filter: sepia(.05) saturate(.95) contrast(1.02);
+}
+.poly .caption {
+  position: absolute; bottom: 4px; left: 0; right: 0;
+  text-align: center;
+  font-family: var(--script);
+  font-size: 11px; color: var(--ink-faded);
+  letter-spacing: .15em;
+}
+.poly:hover { transform: rotate(0deg) scale(1.04); z-index: 5; }
+.poly.p1 { grid-column: 1/4; grid-row: 1; transform: rotate(-3deg); z-index: 2; }
+.poly.p2 { grid-column: 4/7; grid-row: 1; transform: rotate(2deg); margin-top: 22px; z-index: 1; }
+.poly.p3 { grid-column: 2/6; grid-row: 2; transform: rotate(-1deg); margin-top: -28px; z-index: 3; }
+.poly.p4 { grid-column: 1/4; grid-row: 3; transform: rotate(2deg); margin-top: -10px; z-index: 2; }
+.poly.p5 { grid-column: 4/7; grid-row: 3; transform: rotate(-2.5deg); margin-top: 0; z-index: 1; }
+
+.quote-card {
+  position: relative;
+  background: var(--paper-deep);
+  padding: 36px 28px 30px;
+  text-align: center;
+  border: 1px solid var(--paper-edge);
+  margin-top: 18px;
+}
+.quote-card::before, .quote-card::after {
+  content: ''; position: absolute; width: 36px; height: 36px;
+  border: 1px solid var(--terracotta); opacity: .55;
+}
+.quote-card::before { top: 8px; left: 8px;     border-right: none; border-bottom: none; }
+.quote-card::after  { bottom: 8px; right: 8px; border-left:  none; border-top:    none; }
+.quote-card .corner-bl, .quote-card .corner-tr {
+  position: absolute; width: 36px; height: 36px;
+  border: 1px solid var(--terracotta); opacity: .55;
+}
+.quote-card .corner-bl { bottom: 8px; left: 8px;  border-right: none; border-top: none; }
+.quote-card .corner-tr { top: 8px; right: 8px;    border-left:  none; border-bottom: none; }
+
+.quote-card blockquote {
+  font-family: var(--serif);
+  font-style: italic; font-weight: 300;
+  font-size: 17px; line-height: 1.65;
+  color: var(--ink);
+}
+.quote-card cite {
+  display: inline-block;
+  margin-top: 18px;
+  font-family: var(--sans); font-size: 10px; font-weight: 500;
+  letter-spacing: .32em; text-transform: uppercase;
+  color: var(--ink-faded); font-style: normal;
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION 3  ·  THE COUPLE
+═══════════════════════════════════════════════════ */
+#couple { background: var(--paper); }
+
+.person-block {
+  text-align: center;
+  margin-top: 32px;
+  position: relative;
+}
+.person-block + .person-block { margin-top: 56px; }
+
+.person-portrait-wrap {
+  position: relative;
+  width: 200px; height: 200px;
+  margin: 0 auto 22px;
+}
+.person-portrait {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--sh-photo);
+  border: 6px solid var(--paper);
+  outline: 1px solid var(--paper-edge);
+}
+.person-portrait img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center top;
+  filter: sepia(.05) saturate(.95) contrast(1.02);
+}
+.wreath-svg {
+  position: absolute; inset: -22px;
+  width: calc(100% + 44px); height: calc(100% + 44px);
+  pointer-events: none;
+}
+
+.person-role-tag {
+  font-family: var(--sans); font-size: 10px; font-weight: 500;
+  letter-spacing: .4em; text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 6px;
+}
+.person-name {
+  font-family: var(--serif);
+  font-weight: 300; font-style: italic;
+  font-size: 36px; line-height: 1;
+  color: var(--ink);
+  font-variation-settings: 'opsz' 144;
+  margin-bottom: 6px;
+}
+.person-rel {
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: 12px; color: var(--ink-faded);
+  letter-spacing: .3em; text-transform: lowercase;
+  margin: 14px auto 4px;
+  display: inline-block; padding: 0 14px;
+  position: relative;
+}
+.person-rel::before, .person-rel::after {
+  content: ''; position: absolute; top: 50%;
+  width: 14px; height: 1px; background: var(--ink-faded);
+}
+.person-rel::before { left: -14px; }
+.person-rel::after  { right: -14px; }
+.person-parents {
+  font-family: var(--serif); font-weight: 300;
+  font-size: 14px; color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.couple-link {
+  display: flex; flex-direction: column; align-items: center;
+  margin: 20px 0;
+}
+.couple-link svg { opacity: .7; }
+.couple-link span {
+  font-family: var(--script);
+  font-size: 28px; color: var(--terracotta);
+  margin-top: 4px;
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION 4  ·  WEDDING INFO  (vintage ticket)
+═══════════════════════════════════════════════════ */
+#info {
+  background:
+    radial-gradient(ellipse at bottom, var(--sky-pale) 0%, transparent 60%),
+    var(--paper-deep);
+}
+
+.ticket {
+  margin-top: 16px;
+  background: var(--paper);
+  border: 1px dashed var(--ink-faded);
+  position: relative;
+  box-shadow: 0 18px 40px -12px rgba(58,36,16,.28);
+}
+.ticket::before, .ticket::after {
+  content: ''; position: absolute;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--paper-deep);
+  top: 50%; transform: translateY(-50%);
+}
+.ticket::before { left: -11px; }
+.ticket::after  { right: -11px; }
+
+.ticket-head {
+  text-align: center;
+  padding: 22px 24px 16px;
+  border-bottom: 1px dashed var(--ink-faded);
+  position: relative;
+}
+.ticket-head .stub {
+  font-family: var(--sans); font-size: 9px; font-weight: 500;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 6px;
+}
+.ticket-head .occasion {
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: 18px; color: var(--ink-soft);
+}
+
+.ticket-date {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 20px;
+  padding: 28px 24px;
+  align-items: center;
+  text-align: center;
+}
+.ticket-date .day-num {
+  font-family: var(--serif); font-weight: 300;
+  font-size: 88px; line-height: .9;
+  color: var(--ink);
+  font-variation-settings: 'opsz' 144;
+}
+.ticket-date .day-month {
+  display: flex; flex-direction: column; gap: 8px; align-items: center;
+  border-left: 1px dashed var(--ink-faded);
+  border-right: 1px dashed var(--ink-faded);
+  padding: 6px 16px;
+}
+.ticket-date .day-month .m {
+  font-family: var(--sans); font-size: 11px; font-weight: 500;
+  letter-spacing: .4em; text-transform: uppercase; color: var(--terracotta);
+}
+.ticket-date .day-month .y {
+  font-family: var(--serif); font-weight: 300; font-style: italic;
+  font-size: 24px; color: var(--ink);
+}
+.ticket-date .weekday {
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: 14px; color: var(--ink-soft);
+  letter-spacing: .15em;
+}
+
+.ticket-rows {
+  border-top: 1px dashed var(--ink-faded);
+}
+.ticket-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  padding: 18px 24px;
+  border-bottom: 1px dashed var(--ink-faded);
+  align-items: center;
+}
+.ticket-row:last-child { border-bottom: none; }
+.ticket-row .label {
+  font-family: var(--sans); font-size: 9px; font-weight: 500;
+  letter-spacing: .35em; text-transform: uppercase;
+  color: var(--terracotta);
+}
+.ticket-row .value {
+  font-family: var(--serif); font-weight: 400;
+  font-size: 16px; color: var(--ink);
+  line-height: 1.4;
+}
+.ticket-row .value small {
+  display: block; font-size: 11px; color: var(--ink-soft);
+  font-style: italic; font-weight: 300; margin-top: 2px;
+}
+
+.btn-maps {
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  background: var(--ink); color: var(--paper);
+  font-family: var(--sans); font-size: 11px; font-weight: 500;
+  letter-spacing: .35em; text-transform: uppercase;
+  padding: 18px 28px; margin-top: 28px;
+  position: relative; min-height: 48px;
+  transition: background .3s, transform .2s;
+}
+.btn-maps::before, .btn-maps::after {
+  content: ''; position: absolute; top: 50%; width: 5px; height: 5px;
+  background: var(--paper-deep); transform: translateY(-50%) rotate(45deg);
+}
+.btn-maps::before { left: -3px; }
+.btn-maps::after  { right: -3px; }
+.btn-maps:hover { background: var(--terracotta); transform: translateY(-2px); }
+.btn-maps .arrow { font-size: 14px; }
+
+/* ═══════════════════════════════════════════════════
+   SECTION 5  ·  GALLERY
+═══════════════════════════════════════════════════ */
+#gallery {
+  background:
+    linear-gradient(180deg, var(--paper) 0%, var(--blush-pale) 100%);
+}
+.film-strip {
+  margin: 32px -28px 0;
+  background: var(--ink);
+  padding: 16px 0;
+  position: relative;
+}
+.film-strip::before, .film-strip::after {
+  content: '';
+  position: absolute; left: 0; right: 0; height: 8px;
+  background-image: radial-gradient(circle at 8px center, var(--paper) 3px, transparent 4px);
+  background-size: 16px 8px;
+  background-repeat: repeat-x;
+}
+.film-strip::before { top: 4px; }
+.film-strip::after  { bottom: 4px; }
+.film-strip-inner {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 4px; padding: 0 8px;
+}
+.film-strip-inner img {
+  width: 100%; aspect-ratio: 1; object-fit: cover;
+  filter: sepia(.08) saturate(.9) contrast(1.05);
+}
+
+.gallery-masonry {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.gm-col { display: flex; flex-direction: column; gap: 12px; }
+.gm-item {
+  background: #fff;
+  padding: 6px 6px 6px;
+  box-shadow: var(--sh-photo);
+  transition: transform .35s ease;
+}
+.gm-item:hover { transform: scale(1.02); }
+.gm-item img { width: 100%; filter: sepia(.05) saturate(.95) contrast(1.02); }
+.gm-item.tall img { aspect-ratio: 3/5; }
+.gm-item img { aspect-ratio: 1; object-fit: cover; }
+.gm-item.tall    { transform: rotate(-1deg); }
+.gm-item.tilt-r  { transform: rotate(1.2deg); }
+.gm-item.tilt-l  { transform: rotate(-1deg); }
+
+/* ═══════════════════════════════════════════════════
+   SECTION 6  ·  RSVP
+═══════════════════════════════════════════════════ */
+#rsvp { background: var(--paper); }
+
+.rsvp-card {
+  margin-top: 24px;
+  position: relative;
+  background: var(--paper);
+  padding: 36px 28px 30px;
+  border: 1px solid var(--paper-edge);
+  box-shadow: var(--sh-paper);
+}
+.rsvp-card::before {
+  content: 'RSVP';
+  position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
+  background: var(--paper);
+  padding: 4px 18px;
+  font-family: var(--sans); font-size: 10px; font-weight: 500;
+  letter-spacing: .5em; color: var(--terracotta);
+  border: 1px solid var(--paper-edge);
+}
+.rsvp-card .ribbon {
+  position: absolute; top: 22px; right: -8px;
+  background: var(--terracotta); color: var(--paper);
+  padding: 4px 12px;
+  font-family: var(--sans); font-size: 8px; font-weight: 500;
+  letter-spacing: .25em; text-transform: uppercase;
+  transform: rotate(8deg);
+  box-shadow: 0 4px 10px -2px rgba(58,36,16,.3);
+}
+
+.rsvp-intro {
+  text-align: center;
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: 16px; color: var(--ink-soft);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  padding: 0 8px;
+}
+
+.rbtns { display: flex; gap: 12px; margin-bottom: 22px; }
+.rbtn {
+  flex: 1; padding: 14px 8px;
+  font-family: var(--sans); font-size: 10px; font-weight: 500;
+  letter-spacing: .3em; text-transform: uppercase;
+  transition: all .25s; border: 1px solid var(--ink-soft);
+  min-height: 48px;
+  background: transparent; color: var(--ink-soft);
+  position: relative;
+}
+.rbtn .check { display: inline-block; margin-right: 6px; opacity: .5; }
+.rbtn.acc.on, .rbtn.dec.on {
+  background: var(--ink); color: var(--paper); border-color: var(--ink);
+}
+.rbtn.acc.on .check, .rbtn.dec.on .check { opacity: 1; }
+
+.rfield { display: none; }
+.rfield.show { display: block; animation: slideDown .35s ease; }
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rlabel {
+  font-family: var(--sans); font-size: 9px; font-weight: 500;
+  letter-spacing: .35em; text-transform: uppercase;
+  color: var(--terracotta); margin-bottom: 8px; display: block;
+}
+.rinput, .wname, .wtext {
+  width: 100%; padding: 14px 16px;
+  border: 1px solid var(--paper-edge); border-radius: 0;
+  background: var(--paper-deep);
+  font-family: var(--serif); font-size: 16px; font-weight: 300;
+  color: var(--ink); transition: border-color .2s;
+}
+.rinput:focus, .wname:focus, .wtext:focus {
+  outline: none; border-color: var(--terracotta);
+  background: var(--paper);
+}
+
+.btn-sub, .btn-send {
+  width: 100%; margin-top: 18px; padding: 16px;
+  background: var(--terracotta); color: var(--paper);
+  font-family: var(--sans); font-size: 11px; font-weight: 500;
+  letter-spacing: .35em; text-transform: uppercase;
+  min-height: 48px; transition: background .3s, transform .2s;
+  position: relative;
+}
+.btn-sub::before, .btn-sub::after,
+.btn-send::before, .btn-send::after {
+  content: ''; position: absolute; top: 50%; width: 5px; height: 5px;
+  background: var(--paper); transform: translateY(-50%) rotate(45deg);
+}
+.btn-sub::before, .btn-send::before { left: -3px; }
+.btn-sub::after,  .btn-send::after  { right: -3px; }
+.btn-sub:hover, .btn-send:hover { background: var(--ink); transform: translateY(-2px); }
+
+.rok {
+  display: none; text-align: center; padding: 14px 0 4px;
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: 18px; color: var(--terracotta);
+  line-height: 1.5;
+}
+.rok.show { display: block; animation: slideDown .4s ease; }
+
+/* ═══════════════════════════════════════════════════
+   SECTION 7  ·  GIFT  (envelope motif)
+═══════════════════════════════════════════════════ */
+#gift {
+  background: linear-gradient(180deg, var(--blush-pale) 0%, var(--paper) 100%);
+}
+.gift-intro {
+  text-align: center;
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: 15px; line-height: 1.7; color: var(--ink-soft);
+  padding: 0 8px;
+  margin-bottom: 28px;
+}
+
+.bcard {
+  background: var(--paper);
+  position: relative;
+  padding: 24px 22px 22px;
+  border: 1px solid var(--paper-edge);
+  box-shadow: var(--sh-paper);
+}
+.bcard + .bcard { margin-top: 16px; }
+.bcard .bcard-stamp {
+  position: absolute; top: -1px; right: 16px;
+  background: var(--terracotta); color: var(--paper);
+  padding: 6px 10px;
+  font-family: var(--sans); font-size: 8px; font-weight: 500;
+  letter-spacing: .3em; text-transform: uppercase;
+}
+.bcard-bank {
+  font-family: var(--serif); font-weight: 400; font-style: italic;
+  font-size: 18px; color: var(--ink);
+  margin-bottom: 14px; padding-bottom: 12px;
+  border-bottom: 1px dashed var(--paper-edge);
+}
+.brow {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0;
+}
+.bkey {
+  font-family: var(--sans); font-size: 9px; font-weight: 500;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: var(--ink-faded);
+}
+.bval {
+  font-family: var(--serif); font-weight: 400;
+  font-size: 16px; color: var(--ink);
+  display: flex; align-items: center; gap: 8px;
+}
+.cbtn {
+  background: var(--ink); color: var(--paper);
+  padding: 5px 10px;
+  font-family: var(--sans); font-size: 8px; font-weight: 500;
+  letter-spacing: .25em; text-transform: uppercase;
+  transition: background .2s; cursor: pointer;
+}
+.cbtn:hover { background: var(--terracotta); }
+
+/* ═══════════════════════════════════════════════════
+   SECTION 8  ·  WISHES
+═══════════════════════════════════════════════════ */
+#wishes { background: var(--paper); }
+
+.wform {
+  margin-top: 24px;
+  background: var(--paper-deep);
+  padding: 24px 22px;
+  border: 1px solid var(--paper-edge);
+}
+.wname { margin-bottom: 12px; }
+.wtext { resize: none; min-height: 110px; line-height: 1.6; }
+
+.wdisplay {
+  margin-top: 36px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.wbubble {
+  background: var(--paper);
+  padding: 16px 18px;
+  position: relative;
+  border: 1px solid var(--paper-edge);
+  box-shadow: var(--sh-paper);
+  animation: pop .45s cubic-bezier(.34,1.56,.64,1);
+}
+.wbubble:nth-child(odd)  { transform: rotate(-.6deg); }
+.wbubble:nth-child(even) { transform: rotate(.5deg); }
+@keyframes pop {
+  from { opacity: 0; transform: scale(.85) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.wbubble::before {
+  content: '';
+  position: absolute; top: -7px; left: 50%; transform: translateX(-50%);
+  width: 28px; height: 14px;
+  background: var(--terracotta);
+  clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+  opacity: .35;
+}
+.wsender {
+  font-family: var(--sans); font-size: 10px; font-weight: 500;
+  letter-spacing: .35em; text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 6px;
+}
+.wmsg {
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: 15px; color: var(--ink); line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION 9  ·  THANK YOU
+═══════════════════════════════════════════════════ */
+#thankyou {
+  background:
+    radial-gradient(ellipse at center, var(--blush-pale) 0%, transparent 60%),
+    radial-gradient(ellipse at bottom, var(--sky-pale) 0%, transparent 60%),
+    var(--paper);
+  text-align: center;
+  position: relative;
+}
+.thankyou-inner {
+  padding: 80px 28px 60px;
+  display: flex; flex-direction: column; align-items: center;
+  position: relative;
+}
+.ty-wreath {
+  position: relative;
+  width: 220px; height: 220px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 8px;
+}
+.ty-wreath svg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+}
+.ty-wreath-inner {
+  font-family: var(--script);
+  font-size: 60px; line-height: 1;
+  color: var(--ink);
+}
+.ty-amp {
+  font-family: var(--script);
+  font-size: 80px; line-height: 1;
+  color: var(--terracotta);
+  margin: -8px 0;
+}
+.ty-names {
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: 32px; color: var(--ink-soft);
+  margin-top: 12px;
+  font-variation-settings: 'opsz' 144;
+}
+.ty-msg {
+  margin-top: 28px;
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: 15px; line-height: 1.85;
+  color: var(--ink-soft);
+  max-width: 320px;
+}
+.ty-sign {
+  margin-top: 32px;
+  font-family: var(--script);
+  font-size: 32px; color: var(--terracotta);
+  line-height: 1;
+}
+.ty-footer {
+  margin-top: 50px; padding-top: 28px;
+  border-top: 1px solid var(--paper-edge);
+  width: 100%;
+  display: flex; flex-direction: column; gap: 8px; align-items: center;
+}
+.ty-footer .date {
+  font-family: var(--serif); font-weight: 300;
+  font-size: 22px; color: var(--ink);
+  font-variation-settings: 'opsz' 144;
+}
+.ty-footer .place {
+  font-family: var(--sans); font-size: 9px; font-weight: 500;
+  letter-spacing: .42em; text-transform: uppercase;
+  color: var(--ink-faded);
+}
+
+/* ═══════════════════════════════════════════════════
+   ANIMATIONS  ·  scroll reveal
+═══════════════════════════════════════════════════ */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .85s cubic-bezier(.4,0,.2,1), transform .85s cubic-bezier(.4,0,.2,1);
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: .12s; }
+.d2 { transition-delay: .24s; }
+.d3 { transition-delay: .36s; }
+.d4 { transition-delay: .48s; }
+
+.popup {
+  opacity: 0; transform: translateY(40px) scale(.96);
+  transition: opacity .7s cubic-bezier(.34,1.4,.64,1), transform .7s cubic-bezier(.34,1.4,.64,1);
+}
+.popup.in { opacity: 1; transform: translateY(0) scale(1); }
+
+/* preserve transform for tilted polaroids */
+.poly.in.p1 { transform: rotate(-3deg); }
+.poly.in.p2 { transform: rotate(2deg); }
+.poly.in.p3 { transform: rotate(-1deg); }
+.poly.in.p4 { transform: rotate(2deg); }
+.poly.in.p5 { transform: rotate(-2.5deg); }
+.gm-item.tall.in   { transform: rotate(-1deg); }
+.gm-item.tilt-r.in { transform: rotate(1.2deg); }
+.gm-item.tilt-l.in { transform: rotate(-1deg); }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- SVG SYMBOLS · botanical illustrations             -->
+<!-- ════════════════════════════════════════════════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- single leaf branch -->
+    <symbol id="leafBranch" viewBox="0 0 100 50">
+      <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+        <path d="M5 25 Q30 20 50 25 T95 25"/>
+        <path d="M20 25 Q22 18 28 16 Q26 22 22 26 Z" fill="currentColor" fill-opacity=".25"/>
+        <path d="M35 25 Q37 32 43 34 Q41 28 37 24 Z" fill="currentColor" fill-opacity=".25"/>
+        <path d="M55 25 Q57 18 63 16 Q61 22 57 26 Z" fill="currentColor" fill-opacity=".25"/>
+        <path d="M70 25 Q72 32 78 34 Q76 28 72 24 Z" fill="currentColor" fill-opacity=".25"/>
+        <circle cx="85" cy="25" r="2" fill="currentColor" fill-opacity=".4"/>
+      </g>
+    </symbol>
+    <!-- corner ornament -->
+    <symbol id="corner" viewBox="0 0 40 40">
+      <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+        <path d="M2 2 Q15 2 22 8 Q28 14 32 22"/>
+        <path d="M8 4 Q14 8 18 14" />
+        <circle cx="32" cy="22" r="2" fill="currentColor"/>
+        <path d="M16 6 Q18 4 21 5 Q19 8 16 8 Z" fill="currentColor" fill-opacity=".4"/>
+        <path d="M22 12 Q26 11 28 14 Q24 16 22 14 Z" fill="currentColor" fill-opacity=".4"/>
+      </g>
+    </symbol>
+    <!-- divider ornament -->
+    <symbol id="divider" viewBox="0 0 200 30">
+      <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+        <path d="M5 15 L70 15"/>
+        <path d="M70 15 Q80 8 90 15 Q100 22 110 15 Q120 8 130 15"/>
+        <circle cx="100" cy="15" r="3" fill="currentColor"/>
+        <path d="M130 15 L195 15"/>
+        <path d="M85 12 Q88 9 91 12 Q88 14 85 12 Z" fill="currentColor"/>
+        <path d="M109 12 Q112 9 115 12 Q112 14 109 12 Z" fill="currentColor"/>
+      </g>
+    </symbol>
+    <!-- wreath (full circle of leaves) -->
+    <symbol id="wreath" viewBox="0 0 200 200">
+      <g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+        <!-- left half -->
+        <path d="M100 8 Q60 18 35 50 Q15 90 25 130 Q40 170 80 188"/>
+        <g fill="currentColor" fill-opacity=".3">
+          <ellipse cx="80" cy="20" rx="6" ry="3" transform="rotate(-30 80 20)"/>
+          <ellipse cx="55" cy="35" rx="7" ry="3" transform="rotate(-50 55 35)"/>
+          <ellipse cx="38" cy="60" rx="7" ry="3" transform="rotate(-70 38 60)"/>
+          <ellipse cx="25" cy="90" rx="7" ry="3" transform="rotate(-90 25 90)"/>
+          <ellipse cx="22" cy="120" rx="7" ry="3" transform="rotate(-110 22 120)"/>
+          <ellipse cx="33" cy="150" rx="7" ry="3" transform="rotate(-130 33 150)"/>
+          <ellipse cx="58" cy="175" rx="7" ry="3" transform="rotate(-150 58 175)"/>
+        </g>
+        <!-- right half -->
+        <path d="M100 8 Q140 18 165 50 Q185 90 175 130 Q160 170 120 188"/>
+        <g fill="currentColor" fill-opacity=".3">
+          <ellipse cx="120" cy="20" rx="6" ry="3" transform="rotate(30 120 20)"/>
+          <ellipse cx="145" cy="35" rx="7" ry="3" transform="rotate(50 145 35)"/>
+          <ellipse cx="162" cy="60" rx="7" ry="3" transform="rotate(70 162 60)"/>
+          <ellipse cx="175" cy="90" rx="7" ry="3" transform="rotate(90 175 90)"/>
+          <ellipse cx="178" cy="120" rx="7" ry="3" transform="rotate(110 178 120)"/>
+          <ellipse cx="167" cy="150" rx="7" ry="3" transform="rotate(130 167 150)"/>
+          <ellipse cx="142" cy="175" rx="7" ry="3" transform="rotate(150 142 175)"/>
+        </g>
+        <!-- top accent -->
+        <circle cx="100" cy="8" r="2.5" fill="currentColor"/>
+        <path d="M100 192 L96 198 L104 198 Z" fill="currentColor" fill-opacity=".5"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- SPLASH SCREEN                                    -->
+<!-- ════════════════════════════════════════════════ -->
+<div id="splash">
+  <div class="splash-card grain">
+    <svg class="bot-tl" style="color:var(--terracotta)"><use href="#corner"/></svg>
+    <svg class="bot-tr" style="color:var(--terracotta)"><use href="#corner"/></svg>
+    <svg class="bot-bl" style="color:var(--terracotta)"><use href="#corner"/></svg>
+    <svg class="bot-br" style="color:var(--terracotta)"><use href="#corner"/></svg>
+
+    <p class="splash-meta">Save the Date</p>
+    <p class="splash-of">— the wedding of —</p>
+
+    <h1 class="splash-names">
+      <em>John</em>
+      <span class="splash-amp">&amp;</span>
+      <em>Emma</em>
+    </h1>
+
+    <div class="splash-photo">
+      <img src="https://loremflickr.com/360/450/wedding,couple,romantic?lock=42" alt="John and Emma" loading="eager" />
+    </div>
+
+    <div class="splash-date-block">
+      <span class="date-num">15</span>
+      <span class="date-bar"></span>
+      <div class="date-info">
+        <span class="m">June · 2025</span>
+        <span class="d">Saturday afternoon</span>
+      </div>
+    </div>
+
+    <button class="btn-open" id="openBtn">
+      <span>Open Invitation</span>
+    </button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- INVITATION                                       -->
+<!-- ════════════════════════════════════════════════ -->
+<div id="invitation">
+<div class="frame">
+
+  <!-- ─────────── HERO ─────────── -->
+  <section id="hero">
+    <div class="hero-photo-wrap">
+      <img src="https://loremflickr.com/500/600/bride,groom,wedding,ceremony?lock=77" alt="John & Emma" loading="lazy" />
+      <div class="hero-vertical-text">JOHN &amp; EMMA · MMXXV</div>
+      <div class="hero-frame-deco"></div>
+    </div>
+    <div class="hero-body grain">
+      <p class="hero-of reveal">— the wedding of —</p>
+      <h1 class="hero-name reveal d1">
+        <em>John</em>
+        <span class="hero-amp">&amp;</span>
+        <em>Emma</em>
+      </h1>
+      <div class="reveal d2" style="margin-top:18px; color:var(--terracotta)">
+        <svg class="bot-line" width="120" height="20" viewBox="0 0 200 30"><use href="#divider"/></svg>
+      </div>
+      <div class="hero-strip reveal d3">
+        <span>15 June</span>
+        <span class="dot"></span>
+        <span>2025</span>
+        <span class="dot"></span>
+        <span>Jakarta</span>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ─────────── QUOTES & GALLERY ─────────── -->
+  <section id="quotes-gallery">
+    <div class="si grain">
+
+      <div class="bible-quote">
+        <span class="bq-mark reveal">"</span>
+        <blockquote class="reveal d1">
+          <span class="drop">W</span>here you go I will go, and where you stay I will stay. Your people will be my people and your God my God.
+        </blockquote>
+        <cite class="reveal d2">Ruth 1:16</cite>
+        <div class="reveal d3" style="color:var(--sage)">
+          <svg class="bot-line bot-underline" width="160" height="40" viewBox="0 0 100 50"><use href="#leafBranch"/></svg>
+        </div>
+      </div>
+
+      <div class="collage">
+        <div class="poly p1 popup"><img src="https://loremflickr.com/240/240/wedding,kiss,couple?lock=11" alt="" loading="lazy" /><span class="caption">forever</span></div>
+        <div class="poly p2 popup"><img src="https://loremflickr.com/240/240/wedding,flower,bride?lock=22" alt="" loading="lazy" /><span class="caption">together</span></div>
+        <div class="poly p3 popup"><img src="https://loremflickr.com/240/240/wedding,ceremony,aisle?lock=55" alt="" loading="lazy" /><span class="caption">our story</span></div>
+        <div class="poly p4 popup"><img src="https://loremflickr.com/240/240/couple,romance,outdoor?lock=33" alt="" loading="lazy" /><span class="caption">always</span></div>
+        <div class="poly p5 popup"><img src="https://loremflickr.com/240/240/wedding,ring,flowers?lock=44" alt="" loading="lazy" /><span class="caption">love</span></div>
+      </div>
+
+      <div class="quote-card popup">
+        <span class="corner-bl"></span>
+        <span class="corner-tr"></span>
+        <blockquote>Love is patient, love is kind. It does not envy, it does not boast, it is not proud… It always protects, always trusts, always hopes, always perseveres.</blockquote>
+        <cite>1 Corinthians 13:4–7</cite>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─────────── THE COUPLE ─────────── -->
+  <section id="couple">
+    <div class="si grain">
+
+      <div class="chapter">
+        <span class="chapter-roman reveal">— I —</span>
+        <span class="chapter-tag reveal d1">The Couple</span>
+      </div>
+      <h2 class="section-title reveal d2"><em>With joyful hearts</em></h2>
+      <div class="ornament-divider reveal d3">
+        <span class="line"></span>
+        <span class="ornament">✦</span>
+        <span class="line"></span>
+      </div>
+
+      <!-- Groom -->
+      <div class="person-block popup">
+        <div class="person-portrait-wrap">
+          <div class="person-portrait">
+            <img src="https://loremflickr.com/400/400/groom,suit,man,wedding?lock=88" alt="John" loading="lazy" />
+          </div>
+          <svg class="wreath-svg" style="color:var(--sage)"><use href="#wreath"/></svg>
+        </div>
+        <p class="person-role-tag">— The Groom —</p>
+        <h3 class="person-name">John Anderson</h3>
+        <p class="person-rel">son of</p>
+        <p class="person-parents">
+          Mr. Robert Anderson<br>
+          &amp; Mrs. Helen Anderson
+        </p>
+      </div>
+
+      <!-- Connector -->
+      <div class="couple-link popup">
+        <svg width="60" height="40" viewBox="0 0 100 50" style="color:var(--terracotta)"><use href="#leafBranch"/></svg>
+        <span>&amp;</span>
+      </div>
+
+      <!-- Bride -->
+      <div class="person-block popup">
+        <div class="person-portrait-wrap">
+          <div class="person-portrait">
+            <img src="https://loremflickr.com/400/400/bride,woman,wedding,dress?lock=99" alt="Emma" loading="lazy" />
+          </div>
+          <svg class="wreath-svg" style="color:var(--blush)"><use href="#wreath"/></svg>
+        </div>
+        <p class="person-role-tag">— The Bride —</p>
+        <h3 class="person-name">Emma Hartley</h3>
+        <p class="person-rel">daughter of</p>
+        <p class="person-parents">
+          Mr. James Hartley<br>
+          &amp; Mrs. Diana Hartley
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─────────── WEDDING INFO ─────────── -->
+  <section id="info">
+    <div class="si grain">
+
+      <div class="chapter">
+        <span class="chapter-roman reveal">— II —</span>
+        <span class="chapter-tag reveal d1">Save the Date</span>
+      </div>
+      <h2 class="section-title reveal d2"><em>The Celebration</em></h2>
+      <div class="ornament-divider reveal d3">
+        <span class="line"></span>
+        <span class="ornament">✦</span>
+        <span class="line"></span>
+      </div>
+
+      <div class="ticket popup">
+        <div class="ticket-head">
+          <p class="stub">Admit One · Wedding Ceremony</p>
+          <p class="occasion">Holy Matrimony &amp; Reception</p>
+        </div>
+
+        <div class="ticket-date">
+          <span class="day-num">15</span>
+          <div class="day-month">
+            <span class="m">June</span>
+            <span class="y">2025</span>
+          </div>
+          <span class="weekday">Saturday<br><small style="font-size:11px;color:var(--ink-faded);font-style:normal;letter-spacing:.2em;text-transform:uppercase;">— afternoon —</small></span>
+        </div>
+
+        <div class="ticket-rows">
+          <div class="ticket-row">
+            <span class="label">Time</span>
+            <span class="value">14:00 – 18:00 WIB
+              <small>Holy Matrimony at 14:00 · Reception at 16:00</small>
+            </span>
+          </div>
+          <div class="ticket-row">
+            <span class="label">Venue</span>
+            <span class="value">The Grand Pavilion
+              <small>123 Wedding Avenue, Jakarta Selatan, 12190</small>
+            </span>
+          </div>
+          <div class="ticket-row">
+            <span class="label">Dress</span>
+            <span class="value">Formal Attire
+              <small>Beige · peach · soft pastels welcomed</small>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <a href="https://maps.google.com/?q=The+Grand+Pavilion+Jakarta+Selatan"
+         target="_blank" rel="noopener noreferrer"
+         class="btn-maps reveal d4">
+        <span>View Location</span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ─────────── GALLERY ─────────── -->
+  <section id="gallery">
+    <div class="si grain">
+
+      <div class="chapter">
+        <span class="chapter-roman reveal">— III —</span>
+        <span class="chapter-tag reveal d1">Memories</span>
+      </div>
+      <h2 class="section-title reveal d2"><em>Captured Moments</em></h2>
+      <div class="ornament-divider reveal d3">
+        <span class="line"></span>
+        <span class="ornament">✦</span>
+        <span class="line"></span>
+      </div>
+
+      <!-- Film strip -->
+      <div class="film-strip popup">
+        <div class="film-strip-inner">
+          <img src="https://loremflickr.com/200/200/wedding,kiss?lock=201" alt="" loading="lazy" />
+          <img src="https://loremflickr.com/200/200/wedding,couple?lock=202" alt="" loading="lazy" />
+          <img src="https://loremflickr.com/200/200/wedding,romance?lock=203" alt="" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- Masonry -->
+      <div class="gallery-masonry">
+        <div class="gm-col">
+          <div class="gm-item tilt-l popup"><img src="https://loremflickr.com/220/220/couple,love,outdoor?lock=101" alt="" loading="lazy" /></div>
+          <div class="gm-item tall popup"><img src="https://loremflickr.com/220/360/wedding,dance,reception?lock=102" alt="" loading="lazy" /></div>
+          <div class="gm-item tilt-r popup"><img src="https://loremflickr.com/220/220/wedding,flowers,bouquet?lock=103" alt="" loading="lazy" /></div>
+        </div>
+        <div class="gm-col">
+          <div class="gm-item tall popup"><img src="https://loremflickr.com/220/360/bride,groom,portrait?lock=104" alt="" loading="lazy" /></div>
+          <div class="gm-item tilt-l popup"><img src="https://loremflickr.com/220/220/wedding,cake,celebration?lock=105" alt="" loading="lazy" /></div>
+          <div class="gm-item tilt-r popup"><img src="https://loremflickr.com/220/220/couple,happiness,smile?lock=106" alt="" loading="lazy" /></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── RSVP ─────────── -->
+  <section id="rsvp">
+    <div class="si grain">
+
+      <div class="chapter">
+        <span class="chapter-roman reveal">— IV —</span>
+        <span class="chapter-tag reveal d1">RSVP</span>
+      </div>
+      <h2 class="section-title reveal d2"><em>Will you join us?</em></h2>
+      <div class="ornament-divider reveal d3">
+        <span class="line"></span>
+        <span class="ornament">✦</span>
+        <span class="line"></span>
+      </div>
+
+      <div class="rsvp-card popup">
+        <span class="ribbon">Kindly Reply</span>
+        <p class="rsvp-intro">Your presence is the greatest gift. Please let us know if you'll celebrate with us on this special day.</p>
+
+        <div class="rbtns">
+          <button class="rbtn acc" id="acceptBtn"><span class="check">✓</span>Joyfully Accept</button>
+          <button class="rbtn dec" id="declineBtn"><span class="check">✕</span>Regretfully Decline</button>
+        </div>
+
+        <div class="rfield" id="guestField">
+          <label class="rlabel" for="guestCount">Number of Guests</label>
+          <input class="rinput" type="number" id="guestCount" min="1" max="20" placeholder="e.g. 2" />
+        </div>
+
+        <button class="btn-sub" id="submitRsvp">Confirm Attendance</button>
+        <p class="rok" id="rsvpOk"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── GIFT ─────────── -->
+  <section id="gift">
+    <div class="si grain">
+
+      <div class="chapter">
+        <span class="chapter-roman reveal">— V —</span>
+        <span class="chapter-tag reveal d1">Wedding Gift</span>
+      </div>
+      <h2 class="section-title reveal d2"><em>With Gratitude</em></h2>
+      <div class="ornament-divider reveal d3">
+        <span class="line"></span>
+        <span class="ornament">✦</span>
+        <span class="line"></span>
+      </div>
+
+      <p class="gift-intro reveal d4">For loved ones who wish to send a token of blessing, our bank details are below — though your prayers and presence already mean everything.</p>
+
+      <div class="bcard popup">
+        <span class="bcard-stamp">Groom</span>
+        <h4 class="bcard-bank">Bank Central Asia</h4>
+        <div class="brow"><span class="bkey">Account Holder</span><span class="bval">John Anderson</span></div>
+        <div class="brow">
+          <span class="bkey">Account No.</span>
+          <span class="bval">1234 5678 90 <button class="cbtn" onclick="copyText('1234567890',this)">Copy</button></span>
+        </div>
+      </div>
+
+      <div class="bcard popup">
+        <span class="bcard-stamp" style="background:var(--blush)">Bride</span>
+        <h4 class="bcard-bank">Bank Mandiri</h4>
+        <div class="brow"><span class="bkey">Account Holder</span><span class="bval">Emma Hartley</span></div>
+        <div class="brow">
+          <span class="bkey">Account No.</span>
+          <span class="bval">0987 6543 21 <button class="cbtn" onclick="copyText('0987654321',this)">Copy</button></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── WISHES ─────────── -->
+  <section id="wishes">
+    <div class="si grain">
+
+      <div class="chapter">
+        <span class="chapter-roman reveal">— VI —</span>
+        <span class="chapter-tag reveal d1">Prayers &amp; Wishes</span>
+      </div>
+      <h2 class="section-title reveal d2"><em>Send Your Blessings</em></h2>
+      <div class="ornament-divider reveal d3">
+        <span class="line"></span>
+        <span class="ornament">✦</span>
+        <span class="line"></span>
+      </div>
+
+      <div class="wform popup">
+        <input class="wname" type="text" id="wishSender" placeholder="Your name" />
+        <textarea class="wtext" id="wishText" placeholder="Write your prayers and congratulations…"></textarea>
+        <button class="btn-send" id="sendWish">Send Wishes</button>
+      </div>
+
+      <div class="wdisplay" id="wishesDisplay">
+        <!-- example pre-loaded wish for visual richness -->
+        <div class="wbubble">
+          <p class="wsender">Sarah &amp; Michael</p>
+          <p class="wmsg">"Wishing you both a lifetime of love, laughter, and beautiful adventures together. Congratulations!"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── THANK YOU ─────────── -->
+  <section id="thankyou">
+    <div class="thankyou-inner grain">
+
+      <div class="ty-wreath reveal">
+        <svg style="color:var(--sage)"><use href="#wreath"/></svg>
+        <div>
+          <p class="ty-wreath-inner">Thank</p>
+          <p class="ty-amp">&amp;</p>
+          <p class="ty-wreath-inner" style="font-size:48px">You</p>
+        </div>
+      </div>
+
+      <p class="ty-names reveal d1">John &amp; Emma</p>
+
+      <p class="ty-msg reveal d2">
+        With hearts full of gratitude, we thank you for your love, prayers, and presence on our special day. Your blessing means the world to us.
+      </p>
+
+      <p class="ty-sign reveal d3">— with love —</p>
+
+      <div class="ty-footer reveal d4">
+        <span class="date">15 · 06 · 2025</span>
+        <span class="place">The Grand Pavilion · Jakarta</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+</div>
+
+<script>
+  /* ════════════════ OPEN INVITATION ════════════════ */
+  document.getElementById('openBtn').addEventListener('click', () => {
+    const splash = document.getElementById('splash');
+    splash.classList.add('hide');
+    setTimeout(() => {
+      splash.style.display = 'none';
+      document.body.style.overflow = '';
+      document.getElementById('invitation').classList.add('visible');
+      window.scrollTo(0, 0);
+      initReveal();
+    }, 920);
+  });
+
+  /* ════════════════ SCROLL REVEAL ════════════════ */
+  function initReveal() {
+    const els = document.querySelectorAll('.reveal, .popup');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(el => obs.observe(el));
+  }
+
+  /* ════════════════ RSVP ════════════════ */
+  let rsvpChoice = null;
+  document.getElementById('acceptBtn').addEventListener('click', () => {
+    rsvpChoice = 'accept';
+    document.getElementById('acceptBtn').classList.add('on');
+    document.getElementById('declineBtn').classList.remove('on');
+    document.getElementById('guestField').classList.add('show');
+  });
+  document.getElementById('declineBtn').addEventListener('click', () => {
+    rsvpChoice = 'decline';
+    document.getElementById('declineBtn').classList.add('on');
+    document.getElementById('acceptBtn').classList.remove('on');
+    document.getElementById('guestField').classList.remove('show');
+  });
+  document.getElementById('submitRsvp').addEventListener('click', () => {
+    if (!rsvpChoice) { alert('Please select Accept or Decline.'); return; }
+    if (rsvpChoice === 'accept') {
+      const n = document.getElementById('guestCount').value;
+      if (!n || n < 1) { alert('Please enter the number of guests.'); return; }
+    }
+    document.getElementById('submitRsvp').style.display = 'none';
+    document.querySelector('.rbtns').style.display = 'none';
+    document.getElementById('guestField').classList.remove('show');
+    const ok = document.getElementById('rsvpOk');
+    ok.classList.add('show');
+    ok.innerHTML = rsvpChoice === 'accept'
+      ? '✦<br>Thank you — we can\'t wait to celebrate with you.'
+      : '✦<br>We understand, and are grateful for your kind thoughts.';
+  });
+
+  /* ════════════════ WISHES ════════════════ */
+  document.getElementById('sendWish').addEventListener('click', () => {
+    const name = document.getElementById('wishSender').value.trim();
+    const text = document.getElementById('wishText').value.trim();
+    if (!text) { alert('Please write a wish first.'); return; }
+    const b = document.createElement('div');
+    b.className = 'wbubble';
+    b.innerHTML = `<p class="wsender">${name || 'Anonymous'}</p><p class="wmsg">"${text}"</p>`;
+    document.getElementById('wishesDisplay').prepend(b);
+    document.getElementById('wishSender').value = '';
+    document.getElementById('wishText').value = '';
+  });
+
+  /* ════════════════ COPY BANK ════════════════ */
+  function copyText(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+      const p = btn.textContent;
+      btn.textContent = '✓ Copied';
+      setTimeout(() => btn.textContent = p, 1800);
+    });
+  }
+
+  /* lock splash scroll */
+  document.body.style.overflow = 'hidden';
+</script>
+</body>
+</html>
